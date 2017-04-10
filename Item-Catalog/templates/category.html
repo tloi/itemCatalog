@@ -8,7 +8,7 @@
                 <ul>
                     {% for category in categories %}
                     <li>
-                        <a class="{{"active" if selected_category.name==category.name}}" href="{{ url_for('getCategoryItems',category_name=category.name) }}">{{ category.name }} </a>
+                        <a href="{{ url_for('getCategoryItems',category_name=category.name) }}">{{ category.name }} </a>
                     </li>
                         {% endfor %}
                 </ul>
