@@ -4,6 +4,10 @@ Item Catalog
 
 
 
-#To run the application:
+# To execute app:
  
-Run `python project.py`
+1.Run `python project.py`
+ 
+2.Open your browser and set URL to 'http://localhost:5000'
+ 
+
