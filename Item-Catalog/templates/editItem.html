@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+
+{%block contents%}
+         
+    <h3>Edit Item</h3>
+    <form action="{{ url_for('editItem', item_title=item.title)}}" method='post'>
+      <label for="title">Title:</label>
+      <input type="text" name='title' value="{{item.title}}"> <br>
+      <label for="description">Description:</label> <br>
+        <input type="text" name="description" value="{{item.description}}"> <br>
+      <label for="category_id">Category:</label>
+      <select name="category_id">
+        {% for category_option in categories %}
+          <option value="{{category_option.id}}" {{"selected" if category_option.name==category.name}}>{{ category_option.name }}</option>
+        {% endfor %}
+      </select><br> <br>
+      <input type='submit' value='Update'>
+    </form>
+    
+ 
+{%endblock%}

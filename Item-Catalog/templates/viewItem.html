@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+
+{%block contents%}
+    
+  
+    <a href="{{ url_for('getCategoryItems', category_name=category.name) }}"> Category: {{category.name}}</a>
+        <h2> {{item.title}}</h2>
+        <br>
+        {{item.description}}
+        <br>
+    {% if user!=None %}
+        <a href="{{ url_for('editItem', item_title=item.title) }}"> Edit </a>
+        <a href="{{ url_for('deleteItem', item_title=item.title) }}"> Delete </a>
+    {%endif%}
+{%endblock%}
+

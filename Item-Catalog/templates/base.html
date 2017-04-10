@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Item Catalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"> </script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"> </script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="https://apis.google.com/js/client:platform.js?onload=start"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/"><h1>Catalogue App</h1></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user==None %}
+                    <li><a href="/login">Login</a>                        
+                    </li>
+                    {% else %}
+                    <li><a href="">{{ user }}</a></li>
+                    <li><a href="{{ url_for('gdisconnect') }}">Log out</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {%with messages = get_flashed_messages(with_categories=true)%}
+    {%if messages%}
+    <section id="messages">
+        <div class="contents">
+            {%for message in messages%}
+            <div class="message {{message[0]}}">
+                <span>{{message[1]}}</span>
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+    {%endif%}
+    {%endwith%}
+    
+    
+            <div class="container">
+                {%block header%}{%endblock%}
+                {%block contents%}{%endblock%}
+                <div>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-warning" role="alert">
+                        <ul>
+                            {% for message in messages %}
+                            <li> <strong> {{ message }} </strong> </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+
+            </div>
+    
+</body>
+</html>

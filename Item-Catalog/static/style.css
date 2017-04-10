@@ -1,0 +1,17 @@
+nav {
+    background:blue;
+    color:yellow;
+}
+
+h3  {
+    color:navy; 
+    font-weight:bold;
+}
+
+nav div {
+    display:inline-block;
+}
+nav div h1 { color:yellow}
+#signinButton {
+  padding-top: 10px;
+}

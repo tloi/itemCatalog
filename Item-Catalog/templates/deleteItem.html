@@ -1,0 +1,10 @@
+﻿{%extends "base.html"%}
+
+{%block contents%}
+   <div class="container">
+  Are you sure you want to delete <b> {{ item_title }}</b>?
+  <form action="{{ url_for('deleteItem', item_title=item_title)}}" method='post'>
+    <input type="submit" value='Confirm Deletion'>
+  </form>
+</div>
+{%endblock%}
