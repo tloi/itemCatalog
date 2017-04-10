@@ -14,17 +14,16 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a href="/"><h1>Catalogue App</h1></a>
+                <a href="/"><h1>Catalog App</h1></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" >
                     {% if user==None %}
                     <li>
-                        <a href="/login">Login</a>
+                        <a href="{{ url_for('show_login') }}">>Login</a>
                     </li>
-                    {% else %}
-                    <li><a href="">{{ user }}</a></li>
-                    <li><a href="{{ url_for('gdisconnect') }}">Log out</a></li>
+                    {% else %}                    
+                    <li><a href="{{ url_for('gdisconnect') }}">Logout</a></li>
                     {% endif %}
                 </ul>
             </div>

@@ -1,8 +1,7 @@
 {%extends "base.html"%}
 
 {%block contents%}
-      <!-- Displaying flash messages -->
-      <div class="container">
+      
          <div class="row">
             <div class="col-md-4">
                <h4>Categories</h4>
@@ -15,7 +14,7 @@
                 </ul>
             </div>
             <div class="col-md-8">
-               <h4>{{selected_category.name}} </h4>
+               <h4>{{selected_category_name}} </h4>
                 <ul>
                     <li><a href="{{ url_for('newItem') }}"> Add Item </a></li>
                     {% for item in items %}
@@ -30,16 +29,6 @@
                 </ul>
                </div>
             </div>
-            <div class = 'flash'>
-               {% with messages = get_flashed_messages() %}
-               {% if messages %}
-               <div class="alert alert-warning" role="alert">
-                  {% for message in messages %}
-                  <li> <strong> {{ message }} </strong> </li>
-                  {% endfor %}
-               </div>
-               {% endif %}
-               {% endwith %}
-            </div>
-         </div>
+            
+      
 {%endblock%}

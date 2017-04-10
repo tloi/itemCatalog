@@ -138,9 +138,6 @@ def showCatalog():
     except KeyError:
         user = None
     
-    state = ''.join(random.choice(string.ascii_uppercase +
-            string.digits) for x in xrange(32))
-    login_session['state'] = STATE
     categories = session.query(Category).all()
     latest_items = session.query(CategoryItem).order_by(
             desc(CategoryItem.id)).all()
@@ -148,8 +145,8 @@ def showCatalog():
     for category in categories:
             category_names[category.id] = category.name
     return render_template(
-            'category.html', selected_category=None, categories=categories, items=latest_items,
-            category_names=category_names, user=user, STATE=state
+            'category.html', selected_category=None, selected_category_name='Latest Items', categories=categories, items=latest_items,
+            category_names=category_names, user=user
         )
  
 
@@ -199,7 +196,7 @@ def getCategoryItems(category_name):
     except KeyError:
         user = None
     return render_template(
-        'category.html', selected_category=selected_category,  user=user,
+        'category.html', selected_category=selected_category,  selected_category_name=selected_category.name,user=user,
         items=items, categories=categories, category_names=category_names
     )
 
