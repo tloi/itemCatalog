@@ -6,6 +6,14 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    email = Column(String, nullable=False)
+    picture = Column(String, nullable=False)
+    
 class Category(Base):
     __tablename__ = 'category'
     
@@ -29,10 +37,13 @@ class CategoryItem(Base):
     description = Column(String(250), nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
-    def __init__(self, title, description, category_id):
+    createdBy_id=Column(Integer, ForeignKey('user.id'))
+    createdBy=relationship(User) 
+    def __init__(self, title, description, category_id, createdBy_id):
         self.title = title
         self.description = description
         self.category_id = category_id
+        self.createdBy_id=createdBy_id
 
     @property
     def serialize(self):

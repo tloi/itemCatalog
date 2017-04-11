@@ -4,11 +4,18 @@ Item Catalog
 
 
 
+# To populate data:
+ 
+Run `python sample_data.py`
+ 
+
 # To execute app:
+
+1.Create Database by executing 'python database_setup.py'
+2.Populate data by executing 'python sample_data.py'
+3.Run application by executing `python project.py`
  
-1.Run `python project.py`
- 
-2.Open your browser and set URL to 'http://localhost:5000'
+4.Open your browser and set URL to 'http://localhost:5000'
  
 
 

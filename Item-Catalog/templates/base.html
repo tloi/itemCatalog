@@ -20,7 +20,7 @@
                 <ul class="nav navbar-nav navbar-right" >
                     {% if user==None %}
                     <li>
-                        <a href="{{ url_for('show_login') }}">>Login</a>
+                        <a href="{{ url_for('show_login') }}">Login</a>
                     </li>
                     {% else %}                    
                     <li><a href="{{ url_for('gdisconnect') }}">Logout</a></li>
