@@ -164,7 +164,7 @@ def getCatalog():
 @app.route('/')
 @app.route('/catalog')
 def showCatalog():
-
+    # Initial page that shows the latest items    
     try:
         user = login_session['username']
     except KeyError:
@@ -241,9 +241,10 @@ def getCategoryItems(category_name):
 
 @app.route('/item/new', methods=['GET', 'POST'])
 def newItem():
+    # inserts a new item
+    # criteria: user is logged in
     if 'username' not in login_session:
         return redirect('/login')
-
     categories = session.query(Category).all()
     user = login_session['username']
     user_id=login_session['user_id']
@@ -261,7 +262,9 @@ def newItem():
         return redirect(url_for('showCatalog'))
     else:
         return render_template(
-            'newItem.html', categories=categories, user=user
+            'newItem.html',
+            categories=categories,
+            user=user
         )
 
 @app.route('/item/<item_title>/view')
@@ -274,15 +277,20 @@ def getItemDetails(item_title):
     item = session.query(CategoryItem).filter_by(title=item_title).one()
     category = session.query(Category).filter_by(id=item.category_id).one()
     return render_template(
-        'viewItem.html', item=item, category=category,user=user
-    )
+        'viewItem.html',
+        item=item,
+        category=category,
+        user=user)
 
 
 @app.route('/item/<item_title>/edit', methods=['GET', 'POST'])
 def editItem(item_title):
+    # edit item
+    """ criteria: 1. user is logged in
+                  2. user is is the creator of the item
+    """
     if 'username' not in login_session:
         return redirect('/login')
-
     editedItem = session.query(CategoryItem).filter_by(title=item_title).one()
     if editedItem.createdBy_id != login_session['user_id']:
         return redirect(url_for('getItemDetails',item_title))
@@ -311,6 +319,10 @@ def editItem(item_title):
 
 @app.route('/item/<item_title>/delete', methods=['GET', 'POST'])
 def deleteItem(item_title):
+    # delete Item
+    """ criteria: 1. User is logged in
+                  2. User is the creator of the item
+    """
     if 'username' not in login_session:
         return redirect('/login')
     itemToDelete = session.query(CategoryItem).filter_by(title=item_title).one()
